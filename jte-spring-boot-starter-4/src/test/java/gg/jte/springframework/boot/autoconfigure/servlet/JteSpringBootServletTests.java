@@ -26,4 +26,13 @@ public class JteSpringBootServletTests {
                 .andExpect(model().attribute("subject", "World"))
                 .andExpect(content().string(containsString("Hello World!")));
     }
+
+    @Test
+    void stream(@Autowired MockMvc mvc) throws Exception {
+        mvc.perform(get("/stream"))
+                .andExpect(status().isOk())
+                .andExpect(content().contentType("text/vnd.turbo-streams.html;charset=UTF-8"))
+                .andExpect(model().attribute("subject", "World"))
+                .andExpect(content().string(containsString("Hello World!")));
+    }
 }
